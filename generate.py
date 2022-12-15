@@ -4,10 +4,11 @@ from dotenv import load_dotenv
 import json
 
 #CONSTANTS
-FILEPATH = "Data/yourcommentsfilename.json"
+FILEPATH = "Data/yourfilepath.json"
 TEMPERATURE = 1
 MODEL = "text-davinci-003"
 MAX_TOKENS = 2499
+NUM_COMMENTS = 45
 
 #main control flow of program
 def main():
@@ -33,7 +34,7 @@ def loadData():
 #gets the first 45 comments you have posted
 def getFirstPrompt(data):
     promptuser1 = "what can you say about a person based on their last few social media comments shown bellow:\n"
-    for i in range(0,45):
+    for i in range(0,NUM_COMMENTS):
         promptuser1 += f"`{data[i]['string_map_data']['Comment']['value']}`\n"
     response1 = openai.Completion.create(model=MODEL, prompt=promptuser1, temperature=TEMPERATURE, max_tokens=MAX_TOKENS)
     return response1['choices'][0]['text']
@@ -41,7 +42,7 @@ def getFirstPrompt(data):
 #gets the last 45 comments you have posted
 def getLastPrompt(data):
     promptuser2 = "what can you say about a person based on their last few social media comments shown bellow:\n"
-    for i in range(len(data)-1,len(data)-45,-1):
+    for i in range(len(data)-1,len(data)-NUM_COMMENTS,-1):
         promptuser2 += f"`{data[i]['string_map_data']['Comment']['value']}`\n"
     response2 = openai.Completion.create(model=MODEL, prompt=promptuser2, temperature=TEMPERATURE, max_tokens=MAX_TOKENS)
     return response2['choices'][0]['text']
