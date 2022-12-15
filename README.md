@@ -3,7 +3,7 @@ A tool using openAI that analyzes your first few, and last few comments and says
 It's very interesting to see your 'character development' as my output was much different from my 2016 comments to 2022 comments
 
 
-##Running Instructions
+## Running Instructions
 - First, clone the repo into your directory of choice
 - Get your api key from openai if you haven't already done so
 - Create a new .env file and set OPENAI_API_KEY = yourapikey
