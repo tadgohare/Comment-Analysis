@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import json
 
 #CONSTANTS
-FILEPATH = "Data/yourfilepath.json"
+FILEPATH = "Data/tadg_comments.json"
 TEMPERATURE = 1
 MODEL = "text-davinci-003"
 MAX_TOKENS = 2499
@@ -14,6 +14,7 @@ NUM_COMMENTS = 45
 def main():
     config()
     data = loadData()
+    #print(data)
     firstComments = getFirstPrompt(data)
     lastComments = getLastPrompt(data)
     print(f"Based on your first comments, the ai says this about your personality:\n{firstComments}")
